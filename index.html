@@ -1232,50 +1232,43 @@
   services[0]?.classList.add('open');
 
   // ============ CONTACT FORM ============
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqbdqqy';
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  form?.addEventListener('submit', async (e) => {
+  const form = document.getElementById(‘contactForm’);
+  const status = document.getElementById(‘formStatus’);
+  const submitBtn = form?.querySelector(‘.form-submit’);
+  form?.addEventListener(‘submit’, async (e) => {
     e.preventDefault();
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const service = form.service.value;
-    if (!name || !email || !service) {
-      status.textContent = 'Please complete the required fields.';
-      status.style.color = '#ff8a8a';
+    const data = Object.fromEntries(new FormData(form));
+    if (!data.name?.trim() || !data.email?.trim() || !data.service) {
+      status.textContent = ‘Please complete the required fields.’;
+      status.style.color = ‘#ff8a8a’;
       return;
     }
 
-    status.style.color = 'var(--gold)';
-    status.textContent = 'Sending…';
+    status.style.color = ‘var(--gold)’;
+    status.textContent = ‘Sending…’;
+    if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          service,
-          project: form.project.value.trim(),
-          budget: form.budget.value,
-          timeline: form.timeline.value,
-          message: form.message.value.trim()
-        })
+      const res = await fetch(‘https://formspree.io/f/xpqbdqqy’, {
+        method: ‘POST’,
+        headers: { ‘Content-Type’: ‘application/json’, ‘Accept’: ‘application/json’ },
+        body: JSON.stringify(data)
       });
+      const json = await res.json();
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
+      if (res.ok) {
+        status.textContent = ‘Thank you — we’ll be in touch within 48 hours.’;
+        form.reset();
+      } else {
+        const msg = json?.errors?.[0]?.message || ‘Please check your details and try again.’;
+        status.textContent = msg;
+        status.style.color = ‘#ff8a8a’;
       }
-
-      status.textContent = 'Thank you — we’ll be in touch within 48 hours.';
-      form.reset();
-    } catch (error) {
-      status.textContent = 'Sorry, there was a problem sending your enquiry. Please try again.';
-      status.style.color = '#ff8a8a';
+    } catch {
+      status.textContent = ‘Sorry, there was a problem sending your enquiry. Please try again.’;
+      status.style.color = ‘#ff8a8a’;
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 
