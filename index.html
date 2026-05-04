@@ -441,19 +441,13 @@
 
   .philosophy .visual {
     aspect-ratio: 4 / 5;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.1)),
-      radial-gradient(circle at 30% 30%, #1c2418 0%, #0d1209 60%, #050805 100%);
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.42)), url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933167/Philosophy_visual_auwji5.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 1px solid var(--line);
     position: relative;
     overflow: hidden;
-  }
-  .philosophy .visual::before {
-    content: "";
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(135deg, transparent 0 28px, rgba(201,168,76,0.04) 28px 29px),
-      repeating-linear-gradient(45deg, transparent 0 36px, rgba(244,239,230,0.03) 36px 37px);
   }
   .philosophy .visual .label {
     position: absolute; left: 24px; bottom: 24px; right: 24px;
@@ -544,54 +538,18 @@
     transition: transform 1.2s var(--ease), filter 0.6s var(--ease);
   }
   .tile:hover .img { transform: scale(1.06); filter: brightness(0.85); }
-  .tile .img.g1 { background: linear-gradient(160deg, #1f2a18, #0a0f08); }
-  .tile .img.g1::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 30% 60%, rgba(201,168,76,0.15), transparent 60%),
-      repeating-linear-gradient(90deg, transparent 0 12px, rgba(0,0,0,0.4) 12px 13px),
-      repeating-linear-gradient(0deg, transparent 0 80px, rgba(244,239,230,0.04) 80px 82px);
+  .tile .img.g1, .tile .img.g2, .tile .img.g3, .tile .img.g4, .tile .img.g5, .tile .img.g6, .tile .img.g7 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .tile .img.g2 { background: linear-gradient(180deg, #14180e, #050805); }
-  .tile .img.g2::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 70% 30%, rgba(244,239,230,0.08), transparent 50%),
-      conic-gradient(from 220deg at 50% 80%, rgba(201,168,76,0.08), transparent 30%, rgba(201,168,76,0.05) 60%, transparent 90%);
-  }
-  .tile .img.g3 { background: linear-gradient(135deg, #0d120a, #1a2412); }
-  .tile .img.g3::after {
-    content: ""; position: absolute; inset: 0;
-    background: repeating-linear-gradient(45deg, transparent 0 20px, rgba(244,239,230,0.04) 20px 22px);
-  }
-  .tile .img.g4 { background: radial-gradient(circle at 50% 50%, #1d2616, #060906); }
-  .tile .img.g4::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.6) 80%),
-      repeating-radial-gradient(circle at 50% 50%, transparent 0 24px, rgba(201,168,76,0.06) 24px 25px);
-  }
-  .tile .img.g5 { background: linear-gradient(200deg, #11160d, #050805); }
-  .tile .img.g5::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6)),
-      repeating-linear-gradient(110deg, transparent 0 60px, rgba(244,239,230,0.05) 60px 62px);
-  }
-  .tile .img.g6 { background: linear-gradient(170deg, #1a2010, #0a0d07); }
-  .tile .img.g6::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 80% 90%, rgba(201,168,76,0.12), transparent 60%),
-      repeating-linear-gradient(0deg, transparent 0 40px, rgba(0,0,0,0.4) 40px 41px);
-  }
-  .tile .img.g7 { background: linear-gradient(160deg, #0e130a, #1a2412); }
-  .tile .img.g7::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      conic-gradient(from 0deg at 30% 30%, transparent, rgba(201,168,76,0.08), transparent 40%),
-      repeating-linear-gradient(135deg, transparent 0 18px, rgba(244,239,230,0.03) 18px 19px);
-  }
+  .tile .img.g1 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933168/tile_a_jiqx8h.png"); }
+  .tile .img.g2 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933168/tile_b_hitpxx.png"); }
+  .tile .img.g3 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933168/tile_c_wbkett.png"); }
+  .tile .img.g4 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933169/tile_d_j21dgy.png"); }
+  .tile .img.g5 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933168/tile_e_lldd02.png"); }
+  .tile .img.g6 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933167/tile_f_shei38.png"); }
+  .tile .img.g7 { background-image: url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933167/tile_g_skemyj.png"); }
   .tile .meta {
     position: absolute; left: 22px; bottom: 22px; right: 22px;
     z-index: 2;
