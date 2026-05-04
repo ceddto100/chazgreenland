@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="APEX GROUNDS — A premium grounds studio specializing in hedge trimming, mini tree cutting, and full-site cleanup for upscale residences." />
+<title>APEX GROUNDS — Grounds Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============ RESET ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
+
+  /* ============ TOKENS ============ */
+  :root {
+    --black: #0A0A0A;
+    --black-2: #111111;
+    --ink: #1A1A1A;
+    --cream: #F4EFE6;
+    --cream-dim: #C9C2B4;
+    --muted: #7A7568;
+    --gold: #C9A84C;
+    --gold-soft: rgba(201, 168, 76, 0.12);
+    --line: rgba(244, 239, 230, 0.08);
+    --line-strong: rgba(244, 239, 230, 0.18);
+
+    --serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+    --container: 1320px;
+    --gutter: clamp(20px, 4vw, 56px);
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Global grain overlay */
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+  }
+
+  ::selection { background: var(--gold); color: var(--black); }
+
+  /* ============ TYPOGRAPHY ============ */
+  .display {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .display .it { font-style: italic; font-weight: 300; color: var(--gold); }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .eyebrow::before { content: "— "; color: var(--gold); }
+
+  h2.display { font-size: clamp(40px, 6vw, 92px); }
+  h3.display { font-size: clamp(28px, 3.4vw, 48px); }
+
+  p { color: var(--cream-dim); font-weight: 300; }
+
+  /* ============ LAYOUT ============ */
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    position: relative;
+    z-index: 2;
+  }
+  section { position: relative; z-index: 2; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 0;
+    transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 14px 0;
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    letter-spacing: 0.28em;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .brand .mark {
+    width: 26px; height: 26px;
+    border: 1px solid var(--gold);
+    display: grid; place-items: center;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1;
+    transform: rotate(-6deg);
+  }
+  .brand .mark span { transform: rotate(6deg); margin-top: 1px; }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--cream-dim); transition: color 0.3s var(--ease);
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -6px;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.4s var(--ease);
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--cream);
+    border: 1px solid var(--line-strong);
+    padding: 12px 22px;
+    transition: all 0.3s var(--ease);
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .menu-btn { display: none; }
+
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .menu-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .menu-btn .bars { display: inline-block; width: 22px; height: 10px; position: relative; }
+    .menu-btn .bars::before, .menu-btn .bars::after {
+      content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--cream);
+      transition: transform 0.3s var(--ease);
+    }
+    .menu-btn .bars::before { top: 2px; }
+    .menu-btn .bars::after { bottom: 2px; }
+    .menu-open .menu-btn .bars::before { transform: translateY(3px) rotate(45deg); }
+    .menu-open .menu-btn .bars::after { transform: translateY(-3px) rotate(-45deg); }
+  }
+  /* Mobile drawer */
+  .drawer {
+    position: fixed; inset: 0; background: var(--black);
+    z-index: 49;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 28px;
+    transform: translateY(-100%);
+    transition: transform 0.6s var(--ease);
+  }
+  .menu-open .drawer { transform: translateY(0); }
+  .drawer a {
+    font-family: var(--serif);
+    font-size: clamp(34px, 8vw, 64px);
+    color: var(--cream);
+  }
+  .drawer a .num {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-right: 14px;
+    vertical-align: middle;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 140px 0 64px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(1200px 600px at 80% 20%, rgba(201,168,76,0.10), transparent 60%),
+                radial-gradient(900px 500px at 10% 90%, rgba(201,168,76,0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px;
+    align-items: end;
+  }
+  @media (min-width: 980px) {
+    .hero-grid { grid-template-columns: 1.6fr 1fr; }
+  }
+  .hero h1.display {
+    font-size: clamp(64px, 12vw, 200px);
+    line-height: 0.92;
+  }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .line > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: rise 1.1s var(--ease) forwards;
+  }
+  .hero h1 .line:nth-child(2) > span { animation-delay: 0.12s; }
+  .hero h1 .line:nth-child(3) > span { animation-delay: 0.24s; }
+  @keyframes rise { to { transform: translateY(0); } }
+
+  .hero-side {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(20px, 3vw, 36px);
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 1s var(--ease) 0.5s forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .hero-side p { font-size: 15px; max-width: 360px; }
+  .hero-side .meta {
+    margin-top: 28px;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hero-side .meta span b { color: var(--cream); font-weight: 500; }
+
+  .hero-bottom {
+    margin-top: 80px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-bottom .scroll {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+  .hero-bottom .scroll .arrow {
+    width: 60px; height: 1px; background: var(--gold); position: relative;
+    animation: arrow 2.4s var(--ease) infinite;
+  }
+  .hero-bottom .scroll .arrow::after {
+    content: ""; position: absolute; right: 0; top: -3px;
+    width: 7px; height: 7px;
+    border-right: 1px solid var(--gold);
+    border-top: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+  @keyframes arrow { 0%,100% { width: 60px; } 50% { width: 80px; } }
+  .hero-stats { display: flex; gap: clamp(24px, 4vw, 56px); }
+  .hero-stats .stat .n {
+    font-family: var(--serif); font-size: 38px; line-height: 1; color: var(--cream);
+  }
+  .hero-stats .stat .l {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Marquee */
+  .marquee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 28px 0;
+    background: var(--black);
+  }
+  .marquee-track {
+    display: flex; gap: 64px;
+    width: max-content;
+    animation: scroll 36s linear infinite;
+  }
+  .marquee-track span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--cream);
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 64px;
+  }
+  .marquee-track span::after {
+    content: "✦"; color: var(--gold); font-size: 0.6em; font-style: normal;
+  }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ============ SECTION SHELL ============ */
+  .section { padding: clamp(96px, 14vw, 180px) 0; position: relative; }
+  .section-head {
+    display: grid; grid-template-columns: 1fr; gap: 24px;
+    margin-bottom: clamp(56px, 8vw, 96px);
+  }
+  @media (min-width: 880px) {
+    .section-head { grid-template-columns: 1fr 1.4fr; align-items: end; }
+  }
+  .section-head .lede { max-width: 520px; font-size: 17px; }
+  .section-num {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .section-num b { color: var(--gold); font-weight: 500; }
+
+  /* ============ SERVICES ============ */
+  .services .service {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: clamp(20px, 4vw, 64px);
+    align-items: center;
+    padding: clamp(28px, 4vw, 48px) 0;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+    transition: padding 0.5s var(--ease);
+    position: relative;
+  }
+  .services .service:last-child { border-bottom: 1px solid var(--line); }
+  .services .service .num {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.4vw, 30px);
+    color: var(--gold);
+    font-style: italic;
+  }
+  .services .service h3 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 6vw, 88px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    transition: color 0.5s var(--ease), transform 0.6s var(--ease);
+  }
+  .services .service .arrow {
+    width: 56px; height: 56px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    display: grid; place-items: center;
+    color: var(--cream);
+    transition: all 0.4s var(--ease);
+  }
+  .services .service .arrow svg { transition: transform 0.5s var(--ease); }
+  .services .service:hover { padding-left: clamp(8px, 2vw, 24px); }
+  .services .service:hover h3 { color: var(--gold); }
+  .services .service:hover .arrow { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .services .service:hover .arrow svg { transform: rotate(-45deg); }
+  .services .service .desc {
+    grid-column: 2 / 3;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s var(--ease), margin 0.6s var(--ease);
+    margin: 0;
+  }
+  .services .service.open .desc { max-height: 240px; margin-top: 20px; }
+  .services .service .desc p { max-width: 620px; font-size: 16px; }
+  .services .service .tags {
+    margin-top: 16px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .services .service .tags span {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--cream-dim);
+    border: 1px solid var(--line-strong);
+    padding: 8px 12px;
+  }
+
+  @media (max-width: 700px) {
+    .services .service { grid-template-columns: 40px 1fr auto; }
+    .services .service .arrow { width: 44px; height: 44px; }
+  }
+
+  /* ============ PHILOSOPHY ============ */
+  .philosophy {
+    background: linear-gradient(180deg, var(--black), #060606);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .philosophy-grid {
+    display: grid; grid-template-columns: 1fr; gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  @media (min-width: 980px) {
+    .philosophy-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .philosophy h2.display { font-size: clamp(40px, 5.4vw, 72px); }
+  .philosophy .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.4;
+    color: var(--cream);
+    border-left: 1px solid var(--gold);
+    padding: 8px 0 8px 28px;
+    margin-top: 32px;
+  }
+  .philosophy ul {
+    list-style: none;
+    margin-top: 36px;
+    display: grid; gap: 18px;
+  }
+  .philosophy li {
+    display: flex; gap: 16px; align-items: baseline;
+    color: var(--cream-dim);
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .philosophy li::before {
+    content: counter(li, decimal-leading-zero);
+    counter-increment: li;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+  }
+  .philosophy ul { counter-reset: li; }
+
+  .philosophy .visual {
+    aspect-ratio: 4 / 5;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.1)),
+      radial-gradient(circle at 30% 30%, #1c2418 0%, #0d1209 60%, #050805 100%);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .philosophy .visual::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 28px, rgba(201,168,76,0.04) 28px 29px),
+      repeating-linear-gradient(45deg, transparent 0 36px, rgba(244,239,230,0.03) 36px 37px);
+  }
+  .philosophy .visual .label {
+    position: absolute; left: 24px; bottom: 24px; right: 24px;
+    display: flex; justify-content: space-between; align-items: end;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+  .philosophy .visual .label b { color: var(--gold); font-weight: 500; }
+  .philosophy .visual .badge {
+    position: absolute; top: 24px; left: 24px;
+    width: 96px; height: 96px;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    display: grid; place-items: center;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.2;
+    animation: spin 22s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ============ PROCESS ============ */
+  .process-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .process-step {
+    background: var(--black);
+    padding: clamp(28px, 3vw, 44px);
+    min-height: 320px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+    transition: background 0.5s var(--ease);
+  }
+  .process-step:hover { background: #0d0d0d; }
+  .process-step .top { display: flex; justify-content: space-between; align-items: start; }
+  .process-step .step-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--gold);
+  }
+  .process-step .icon {
+    width: 32px; height: 32px;
+    color: var(--cream-dim);
+  }
+  .process-step h4 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .process-step p { font-size: 14px; }
+
+  /* ============ GALLERY ============ */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(8px, 1vw, 14px);
+  }
+  .tile {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+  }
+  .tile.tall { aspect-ratio: 3 / 4; }
+  .tile.a { grid-column: span 7; }
+  .tile.b { grid-column: span 5; }
+  .tile.c { grid-column: span 4; }
+  .tile.d { grid-column: span 4; }
+  .tile.e { grid-column: span 4; }
+  .tile.f { grid-column: span 6; }
+  .tile.g { grid-column: span 6; }
+  @media (max-width: 760px) {
+    .tile { grid-column: span 12 !important; aspect-ratio: 4 / 3 !important; }
+  }
+  .tile .img {
+    position: absolute; inset: 0;
+    transition: transform 1.2s var(--ease), filter 0.6s var(--ease);
+  }
+  .tile:hover .img { transform: scale(1.06); filter: brightness(0.85); }
+  .tile .img.g1 { background: linear-gradient(160deg, #1f2a18, #0a0f08); }
+  .tile .img.g1::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(201,168,76,0.15), transparent 60%),
+      repeating-linear-gradient(90deg, transparent 0 12px, rgba(0,0,0,0.4) 12px 13px),
+      repeating-linear-gradient(0deg, transparent 0 80px, rgba(244,239,230,0.04) 80px 82px);
+  }
+  .tile .img.g2 { background: linear-gradient(180deg, #14180e, #050805); }
+  .tile .img.g2::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 70% 30%, rgba(244,239,230,0.08), transparent 50%),
+      conic-gradient(from 220deg at 50% 80%, rgba(201,168,76,0.08), transparent 30%, rgba(201,168,76,0.05) 60%, transparent 90%);
+  }
+  .tile .img.g3 { background: linear-gradient(135deg, #0d120a, #1a2412); }
+  .tile .img.g3::after {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent 0 20px, rgba(244,239,230,0.04) 20px 22px);
+  }
+  .tile .img.g4 { background: radial-gradient(circle at 50% 50%, #1d2616, #060906); }
+  .tile .img.g4::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.6) 80%),
+      repeating-radial-gradient(circle at 50% 50%, transparent 0 24px, rgba(201,168,76,0.06) 24px 25px);
+  }
+  .tile .img.g5 { background: linear-gradient(200deg, #11160d, #050805); }
+  .tile .img.g5::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6)),
+      repeating-linear-gradient(110deg, transparent 0 60px, rgba(244,239,230,0.05) 60px 62px);
+  }
+  .tile .img.g6 { background: linear-gradient(170deg, #1a2010, #0a0d07); }
+  .tile .img.g6::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 90%, rgba(201,168,76,0.12), transparent 60%),
+      repeating-linear-gradient(0deg, transparent 0 40px, rgba(0,0,0,0.4) 40px 41px);
+  }
+  .tile .img.g7 { background: linear-gradient(160deg, #0e130a, #1a2412); }
+  .tile .img.g7::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      conic-gradient(from 0deg at 30% 30%, transparent, rgba(201,168,76,0.08), transparent 40%),
+      repeating-linear-gradient(135deg, transparent 0 18px, rgba(244,239,230,0.03) 18px 19px);
+  }
+  .tile .meta {
+    position: absolute; left: 22px; bottom: 22px; right: 22px;
+    z-index: 2;
+    display: flex; justify-content: space-between; align-items: end;
+    color: var(--cream);
+    transform: translateY(8px);
+    opacity: 0;
+    transition: all 0.5s var(--ease);
+  }
+  .tile:hover .meta { transform: translateY(0); opacity: 1; }
+  .tile .meta .t {
+    font-family: var(--serif); font-size: 22px; line-height: 1.1;
+  }
+  .tile .meta .l {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+  }
+  .tile .corner {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cream-dim);
+    z-index: 2;
+  }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials {
+    background: linear-gradient(180deg, #050505, var(--black));
+  }
+  .testimonial-list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .testimonial {
+    background: var(--black);
+    padding: clamp(36px, 4vw, 64px);
+    display: grid; grid-template-columns: 1fr; gap: 28px;
+  }
+  @media (min-width: 880px) {
+    .testimonial { grid-template-columns: 200px 1fr auto; align-items: start; }
+  }
+  .testimonial .who {
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+  .testimonial .who b { color: var(--gold); font-weight: 500; display: block; margin-bottom: 6px; }
+  .testimonial blockquote {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.35;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .testimonial blockquote::before { content: "“"; color: var(--gold); margin-right: 4px; }
+  .testimonial blockquote::after { content: "”"; color: var(--gold); margin-left: 2px; }
+  .testimonial .stars {
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-size: 14px;
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    padding: clamp(120px, 18vw, 220px) 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(201,168,76,0.10), transparent 70%),
+      var(--black);
+  }
+  .cta h2.display { font-size: clamp(48px, 9vw, 160px); }
+  .cta p { max-width: 540px; margin: 32px auto 48px; font-size: 17px; }
+  .cta-actions { display: inline-flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 20px 32px;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s var(--ease);
+  }
+  .btn-primary { background: var(--gold); color: var(--black); }
+  .btn-primary:hover { background: var(--cream); }
+  .btn-ghost { color: var(--cream); border: 1px solid var(--line-strong); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .btn .dot {
+    width: 6px; height: 6px; background: currentColor; border-radius: 50%;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px);
+  }
+  @media (min-width: 980px) {
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .contact-info dl { margin-top: 36px; }
+  .contact-info dt {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 28px;
+  }
+  .contact-info dt:first-child { margin-top: 0; }
+  .contact-info dd {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--cream);
+    margin-top: 6px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-info dd a:hover { color: var(--gold); }
+
+  form.contact-form { display: grid; gap: 20px; }
+  .field { position: relative; }
+  .field label {
+    display: block;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line-strong);
+    padding: 14px 0;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 300;
+    transition: border-color 0.3s var(--ease);
+  }
+  .field select { appearance: none; }
+  .field textarea { resize: none; min-height: 120px; }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none; border-bottom-color: var(--gold);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+  .form-submit {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--cream); color: var(--black);
+    padding: 20px 32px;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s var(--ease);
+    justify-self: start;
+  }
+  .form-submit:hover { background: var(--gold); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 56px 0 36px;
+    position: relative; z-index: 2;
+  }
+  .footer-top {
+    display: grid; gap: 40px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) {
+    .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  }
+  .footer-top h5 {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .footer-top ul { list-style: none; display: grid; gap: 10px; }
+  .footer-top li a { color: var(--cream-dim); font-size: 14px; transition: color 0.3s var(--ease); }
+  .footer-top li a:hover { color: var(--cream); }
+  .footer-brand .display {
+    font-family: var(--serif);
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .footer-brand p { max-width: 340px; margin-top: 16px; font-size: 14px; }
+  .footer-bottom {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-d2 { transition-delay: 0.08s; }
+  .reveal-d3 { transition-delay: 0.16s; }
+  .reveal-d4 { transition-delay: 0.24s; }
+
+  /* Cursor for pointer-fine */
+  @media (hover: hover) and (pointer: fine) {
+    .cursor {
+      position: fixed; pointer-events: none; z-index: 100;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s var(--ease), opacity 0.3s var(--ease);
+      mix-blend-mode: difference;
+    }
+    .cursor.ring {
+      width: 36px; height: 36px;
+      background: transparent; border: 1px solid var(--gold);
+      transition: transform 0.4s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s var(--ease);
+    }
+    .cursor.hover { transform: translate(-50%, -50%) scale(2); }
+  }
+  @media (hover: none) { .cursor { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor dot" id="cursorDot"></div>
+<div class="cursor ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand" aria-label="Apex Grounds home">
+      <span class="mark"><span>A</span></span>
+      APEX&nbsp;GROUNDS
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#philosophy">Studio</a>
+      <a href="#process">Process</a>
+      <a href="#gallery">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Request a quote</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      Menu <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<!-- DRAWER (mobile) -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a href="#services"><span class="num">01</span>Services</a>
+  <a href="#philosophy"><span class="num">02</span>Studio</a>
+  <a href="#process"><span class="num">03</span>Process</a>
+  <a href="#gallery"><span class="num">04</span>Work</a>
+  <a href="#contact"><span class="num">05</span>Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 32px;">Grounds Studio · Est. 2014</div>
+        <h1 class="display">
+          <span class="line"><span>Sculpting</span></span>
+          <span class="line"><span>private <em class="it">landscapes</em></span></span>
+          <span class="line"><span>with intent.</span></span>
+        </h1>
+      </div>
+      <aside class="hero-side">
+        <p>A grounds studio for upscale residences. We treat hedges, trees, and terrain as living architecture — composed, edited, kept exquisite.</p>
+        <div class="meta">
+          <span><b>Hedge</b> &nbsp;·&nbsp; Sculpt &amp; maintain</span>
+          <span><b>Canopy</b> &nbsp;·&nbsp; Mini tree cuts</span>
+          <span><b>Site</b> &nbsp;·&nbsp; Full restorations</span>
+        </div>
+      </aside>
+    </div>
+    <div class="hero-bottom">
+      <a href="#services" class="scroll" aria-label="Scroll to services">
+        <span class="arrow" aria-hidden="true"></span>
+        Scroll
+      </a>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">11<span style="color:var(--gold);">+</span></div><div class="l">Years tending grounds</div></div>
+        <div class="stat"><div class="n">340</div><div class="l">Estates served</div></div>
+        <div class="stat"><div class="n">5★</div><div class="l">Average rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Hedge sculpting</span><span>Mini tree cutting</span><span>Full-site cleanup</span><span>Edge architecture</span><span>Seasonal maintenance</span><span>Private estates</span>
+    <span>Hedge sculpting</span><span>Mini tree cutting</span><span>Full-site cleanup</span><span>Edge architecture</span><span>Seasonal maintenance</span><span>Private estates</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">The Discipline</div>
+        <h2 class="display reveal" style="margin-top: 18px;">Three rituals,<br/><em class="it">one craft.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">We do a small number of things, slowly and well. Every visit is composed — each cut intentional, each line measured, each silhouette resolved before we leave.</p>
+    </div>
+
+    <div class="service-list">
+      <article class="service reveal" data-service>
+        <div class="num">01</div>
+        <div>
+          <h3>Hedge Trimming</h3>
+          <div class="desc">
+            <p>Sharp lines, clean planes, deliberate shape. We trim, taper, and re-establish architectural form on boxwood, privet, holly, yew, and hornbeam — restoring symmetry and crisp shoulders before they soften.</p>
+            <div class="tags">
+              <span>Formal hedging</span><span>Topiary maintenance</span><span>Geometric shaping</span><span>Renovation cuts</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </article>
+
+      <article class="service reveal" data-service>
+        <div class="num">02</div>
+        <div>
+          <h3>Mini Tree Cutting</h3>
+          <div class="desc">
+            <p>Specimen care for ornamentals, espaliers, and small canopies under twenty feet. Selective limbing, crown thinning, deadwood removal — preserving the tree's natural gesture while improving light, airflow, and longevity.</p>
+            <div class="tags">
+              <span>Ornamental pruning</span><span>Crown thinning</span><span>Deadwooding</span><span>Espalier</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </article>
+
+      <article class="service reveal" data-service>
+        <div class="num">03</div>
+        <div>
+          <h3>Full-Site Cleanup</h3>
+          <div class="desc">
+            <p>End-of-season restoration. We edge beds, lift debris, refresh mulch, clear gutters of leaf-fall, blow drives clean, and leave the property reset — quiet, sharp, and ready for what's next.</p>
+            <div class="tags">
+              <span>Bed edging</span><span>Leaf removal</span><span>Mulch refresh</span><span>Estate reset</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section philosophy" id="philosophy">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">The Studio</div>
+        <h2 class="display reveal" style="margin-top: 18px;">Landscaping,<br/><em class="it">as composition.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">Apex Grounds is a small, deliberate studio. No subcontracting, no rushed visits, no cookie-cutter packages — only the same crew, returning to the same property, year after year.</p>
+    </div>
+
+    <div class="philosophy-grid">
+      <div class="reveal">
+        <p style="font-size: 17px; max-width: 520px;">
+          We were trained by horticulturalists, classical gardeners, and one stubborn mentor who measured every hedge with a string line. That discipline never left. We approach a property the way an editor approaches a manuscript — restraint first, then precision, then polish.
+        </p>
+        <div class="quote">
+          A garden isn't a chore list. It's a portrait of the people who live in it — and we treat it that way.
+        </div>
+        <ul>
+          <li>Owner-led visits — your property is never handed off.</li>
+          <li>Fully insured, licensed, background-checked crew.</li>
+          <li>Hand tools first; power tools only when warranted.</li>
+          <li>Itemized aftercare notes after every visit.</li>
+        </ul>
+      </div>
+
+      <div class="visual reveal reveal-d2" aria-hidden="true">
+        <div class="badge"><span>Apex&nbsp;·&nbsp;Grounds&nbsp;·&nbsp;Studio&nbsp;·&nbsp;</span></div>
+        <div class="label">
+          <span><b>Plate&nbsp;001</b><br/>North hedge, late season</span>
+          <span>40.7° N<br/>74.0° W</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">The Method</div>
+        <h2 class="display reveal" style="margin-top: 18px;">From walkthrough<br/>to <em class="it">final sweep.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">A repeatable, unhurried process — designed so the property is left better than the day before, every single visit.</p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="top">
+          <div class="step-num">01</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg>
+        </div>
+        <div>
+          <h4>Walkthrough</h4>
+          <p>An on-site visit. We assess condition, listen to your priorities, and document what the property needs in order, not all at once.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="top">
+          <div class="step-num">02</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+        </div>
+        <div>
+          <h4>Composition</h4>
+          <p>You receive a clear, fixed-fee plan — what we'll do, when, and what success looks like. No padded hours, no surprise line items.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="top">
+          <div class="step-num">03</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12l4 4L21 6"/></svg>
+        </div>
+        <div>
+          <h4>Execution</h4>
+          <p>Same crew, every time. We arrive when we say, work quietly, protect adjacent plantings, and stop only when the cut is right.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="top">
+          <div class="step-num">04</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3v18M3 12h18"/></svg>
+        </div>
+        <div>
+          <h4>Aftercare</h4>
+          <p>A photographed report, a watering note where relevant, and a calendar mark for the next visit — kept on file for the season.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">Selected Work</div>
+        <h2 class="display reveal" style="margin-top: 18px;">A small archive<br/>of <em class="it">private grounds.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">Recent properties — restorations, ongoing maintenance, and one-off cleanups. Names withheld out of respect for our clients.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="tile a reveal"><div class="img g1"></div><span class="corner">N° 001</span><div class="meta"><div><div class="l">Hedge · Greenwich</div><div class="t">The Long Privet</div></div></div></div>
+      <div class="tile b reveal reveal-d2"><div class="img g2"></div><span class="corner">N° 002</span><div class="meta"><div><div class="l">Canopy · Bedford</div><div class="t">Crown Lift, Magnolia</div></div></div></div>
+      <div class="tile c reveal"><div class="img g3"></div><span class="corner">N° 003</span><div class="meta"><div><div class="l">Cleanup · Rye</div><div class="t">Fall Reset</div></div></div></div>
+      <div class="tile d reveal reveal-d2"><div class="img g4"></div><span class="corner">N° 004</span><div class="meta"><div><div class="l">Topiary · Scarsdale</div><div class="t">Boxwood Spheres</div></div></div></div>
+      <div class="tile e reveal reveal-d3"><div class="img g5"></div><span class="corner">N° 005</span><div class="meta"><div><div class="l">Hedge · Old Greenwich</div><div class="t">Hornbeam Wall</div></div></div></div>
+      <div class="tile f reveal"><div class="img g6"></div><span class="corner">N° 006</span><div class="meta"><div><div class="l">Estate · Litchfield</div><div class="t">Spring Edit</div></div></div></div>
+      <div class="tile g reveal reveal-d2"><div class="img g7"></div><span class="corner">N° 007</span><div class="meta"><div><div class="l">Drive · Bronxville</div><div class="t">Allee Maintenance</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">From the Owners</div>
+        <h2 class="display reveal" style="margin-top: 18px;">Quiet praise,<br/><em class="it">earned slowly.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">We work mostly by referral. These are clients who've kept us on year after year — the highest compliment we know.</p>
+    </div>
+
+    <div class="testimonial-list reveal">
+      <div class="testimonial">
+        <div class="who"><b>M. Halloran</b>Greenwich, CT · Client since 2018</div>
+        <blockquote>The first crew that ever made our boxwood look like it belonged in a book. Quiet, exact, and gone before lunch.</blockquote>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="testimonial">
+        <div class="who"><b>The Pell Estate</b>Bedford, NY · Client since 2020</div>
+        <blockquote>We had three landscapers before Apex. None of them returned a phone call. Apex returns the property — better than they found it.</blockquote>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="testimonial">
+        <div class="who"><b>R. Caldwell</b>Litchfield, CT · Client since 2016</div>
+        <blockquote>They prune like editors. The trees look like themselves, only better. I cannot recommend them enough.</blockquote>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="eyebrow reveal">Now Booking · Spring &amp; Summer</div>
+    <h2 class="display reveal" style="margin-top: 28px;">Let's <em class="it">walk</em><br/>the property.</h2>
+    <p class="reveal reveal-d2">Tell us a little about your grounds. We'll respond within 48 hours and schedule a private walkthrough at your convenience.</p>
+    <div class="cta-actions reveal reveal-d3">
+      <a href="#contact" class="btn btn-primary"><span class="dot"></span>Request a walkthrough</a>
+      <a href="tel:+19145550199" class="btn btn-ghost">Call · (914) 555&nbsp;0199</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow reveal">Begin</div>
+        <h2 class="display reveal" style="margin-top: 18px;">Tell us about<br/><em class="it">your grounds.</em></h2>
+      </div>
+      <p class="lede reveal reveal-d2">Share a few details and we'll be in touch. For estates over five acres or recurring contracts, please call directly.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p style="max-width: 420px;">Apex Grounds is a private grounds studio serving Westchester, Fairfield, and Litchfield counties. We accept a limited number of new properties each season.</p>
+        <dl>
+          <dt>Studio</dt>
+          <dd>27 Mill Lane &middot; Bedford, NY 10506</dd>
+          <dt>Email</dt>
+          <dd><a href="mailto:studio@apexgrounds.co">studio@apexgrounds.co</a></dd>
+          <dt>Telephone</dt>
+          <dd><a href="tel:+19145550199">+1 (914) 555&nbsp;0199</a></dd>
+          <dt>Hours</dt>
+          <dd>Mon–Sat &middot; 7:00 — 17:00</dd>
+        </dl>
+      </div>
+
+      <form class="contact-form reveal reveal-d2" id="contactForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="f-service">Service</label>
+            <select id="f-service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>Hedge Trimming</option>
+              <option>Mini Tree Cutting</option>
+              <option>Full-Site Cleanup</option>
+              <option>Seasonal Maintenance</option>
+              <option>Other / Consultation</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-address">Property Address</label>
+          <input id="f-address" name="address" type="text" autocomplete="street-address" />
+        </div>
+        <div class="field">
+          <label for="f-msg">A few notes about your grounds</label>
+          <textarea id="f-msg" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="form-submit"><span class="dot" style="background:#0A0A0A;"></span>Send enquiry</button>
+        <div id="formStatus" role="status" aria-live="polite" style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);min-height:18px;"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="display">Apex<br/><em style="color:var(--gold); font-weight:300;">Grounds.</em></div>
+        <p>A small grounds studio for upscale residences. Composed work, quietly delivered.</p>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="#philosophy">Approach</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#gallery">Selected Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Hedge Trimming</a></li>
+          <li><a href="#services">Mini Tree Cutting</a></li>
+          <li><a href="#services">Full-Site Cleanup</a></li>
+          <li><a href="#services">Seasonal Maintenance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">Journal</a></li>
+          <li><a href="#" rel="noopener">Press</a></li>
+          <li><a href="mailto:studio@apexgrounds.co">studio@apexgrounds.co</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Apex Grounds Studio. All rights reserved.</span>
+      <span>Licensed &middot; Insured &middot; NY · CT</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============ NAV SCROLL STATE ============
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ============ MOBILE MENU ============
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('drawer');
+  const toggleMenu = (open) => {
+    document.body.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    drawer.setAttribute('aria-hidden', String(!open));
+  };
+  menuBtn?.addEventListener('click', () => toggleMenu(!document.body.classList.contains('menu-open')));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+  // ============ INTERSECTION REVEAL ============
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ============ ACCORDION (services) ============
+  const services = document.querySelectorAll('[data-service]');
+  services.forEach((s) => {
+    s.addEventListener('click', () => {
+      const willOpen = !s.classList.contains('open');
+      services.forEach(x => x.classList.remove('open'));
+      if (willOpen) s.classList.add('open');
+    });
+  });
+  // open the first by default
+  services[0]?.classList.add('open');
+
+  // ============ CONTACT FORM ============
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const service = form.service.value;
+    if (!name || !email || !service) {
+      status.textContent = 'Please complete the required fields.';
+      status.style.color = '#ff8a8a';
+      return;
+    }
+    status.style.color = 'var(--gold)';
+    status.textContent = 'Sending…';
+    setTimeout(() => {
+      status.textContent = 'Thank you — we’ll be in touch within 48 hours.';
+      form.reset();
+    }, 700);
+  });
+
+  // ============ YEAR ============
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============ CUSTOM CURSOR ============
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+  const tick = () => {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    if (dot) { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }
+    if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+    requestAnimationFrame(tick);
+  };
+  tick();
+  document.querySelectorAll('a, button, [data-service], .tile, input, textarea, select').forEach(el => {
+    el.addEventListener('mouseenter', () => ring?.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring?.classList.remove('hover'));
+  });
+
+  // ============ HERO PARALLAX ON HEADLINE ============
+  const heroHeadline = document.querySelector('.hero h1');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight && heroHeadline) {
+      heroHeadline.style.transform = `translateY(${y * 0.08}px)`;
+      heroHeadline.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.9)));
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
