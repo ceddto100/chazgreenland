@@ -203,10 +203,12 @@
     padding: 140px 0 64px;
     overflow: hidden;
     position: relative;
-    background-image: linear-gradient(180deg, rgba(10,10,10,0.38) 0%, rgba(10,10,10,0.84) 72%, rgba(10,10,10,0.95) 100%), url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777931110/ChatGPT_Image_May_4_2026_05_39_30_PM_bi9gy2.png");
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.90) 62%, rgba(0,0,0,0.98) 100%), url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777931110/ChatGPT_Image_May_4_2026_05_39_30_PM_bi9gy2.png");
+    background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    filter: grayscale(1) contrast(1.15) brightness(0.62);
   }
   .hero::before {
     content: "";
@@ -441,7 +443,9 @@
 
   .philosophy .visual {
     aspect-ratio: 4 / 5;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.42)), url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933167/Philosophy_visual_auwji5.png");
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.68), rgba(0,0,0,0.90)), url("https://res.cloudinary.com/drssz6lnm/image/upload/v1777933167/Philosophy_visual_auwji5.png");
+    background-blend-mode: multiply;
+    filter: grayscale(1) contrast(1.2) brightness(0.72);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -538,6 +542,16 @@
     transition: transform 1.2s var(--ease), filter 0.6s var(--ease);
   }
   .tile:hover .img { transform: scale(1.06); filter: brightness(0.85); }
+.tile .img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.62) 100%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, rgba(0,0,0,0.18) 1px 3px);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
   .tile .img.g1, .tile .img.g2, .tile .img.g3, .tile .img.g4, .tile .img.g5, .tile .img.g6, .tile .img.g7 {
     background-size: cover;
     background-position: center;
