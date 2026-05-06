@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chaz Greenland — Grounds Studio | Metro Atlanta</title>
+<title>Chaz Greenland Landscaping | Metro Atlanta</title>
 
 <!-- ===== SEO: Core ===== -->
-<meta name="description" content="Chaz Greenland is a premium grounds studio serving upscale residences in Metro Atlanta. Specializing in hedge trimming, mini tree cutting, and full-site cleanup since 2014." />
-<meta name="keywords" content="grounds studio, hedge trimming, tree cutting, lawn care, estate landscaping, Atlanta landscaping, topiary, garden maintenance, Chaz Greenland" />
-<meta name="author" content="Chaz Greenland Studio" />
+<meta name="description" content="Chaz Greenland is a premium landscaping company serving upscale residences in Metro Atlanta. Specializing in hedge trimming, mini tree cutting, and full-site cleanup since 2014." />
+<meta name="keywords" content="landscaping, hedge trimming, tree cutting, lawn care, estate landscaping, Atlanta landscaping, topiary, garden maintenance, Chaz Greenland" />
+<meta name="author" content="Chaz Greenland Landscaping" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#C9A84C" />
 <link rel="canonical" href="https://chazgreenland.com/" />
@@ -16,19 +16,19 @@
 <!-- ===== SEO: Open Graph (Facebook / LinkedIn) ===== -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://chazgreenland.com/" />
-<meta property="og:title" content="Chaz Greenland — Grounds Studio | Metro Atlanta" />
-<meta property="og:description" content="Premium grounds studio for upscale residences. Hedge trimming, mini tree cutting, and full-site cleanup — crafted with the precision of a fine edit. Serving Metro Atlanta since 2014." />
+<meta property="og:title" content="Chaz Greenland Landscaping | Metro Atlanta" />
+<meta property="og:description" content="Premium landscaping services for upscale residences. Hedge trimming, mini tree cutting, and full-site cleanup — crafted with precision. Serving Metro Atlanta since 2014." />
 <meta property="og:image" content="https://res.cloudinary.com/drssz6lnm/image/upload/v1777931110/ChatGPT_Image_May_4_2026_05_39_30_PM_bi9gy2.png" />
 <meta property="og:image:alt" content="Chaz Greenland — Sculpted private landscape" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:site_name" content="Chaz Greenland Studio" />
+<meta property="og:site_name" content="Chaz Greenland Landscaping" />
 <meta property="og:locale" content="en_US" />
 
 <!-- ===== SEO: Twitter / X Card ===== -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Chaz Greenland — Grounds Studio | Metro Atlanta" />
-<meta name="twitter:description" content="Premium grounds studio for upscale residences. Hedge trimming, mini tree cutting, full-site cleanup — crafted with precision. Serving Metro Atlanta since 2014." />
+<meta name="twitter:title" content="Chaz Greenland Landscaping | Metro Atlanta" />
+<meta name="twitter:description" content="Premium landscaping services for upscale residences. Hedge trimming, mini tree cutting, full-site cleanup — crafted with precision. Serving Metro Atlanta since 2014." />
 <meta name="twitter:image" content="https://res.cloudinary.com/drssz6lnm/image/upload/v1777931110/ChatGPT_Image_May_4_2026_05_39_30_PM_bi9gy2.png" />
 <meta name="twitter:image:alt" content="Chaz Greenland — Sculpted private landscape" />
 
@@ -37,8 +37,8 @@
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Chaz Greenland Studio",
-  "description": "Premium grounds studio specializing in hedge trimming, mini tree cutting, and full-site cleanup for upscale residences in Metro Atlanta.",
+  "name": "Chaz Greenland Landscaping",
+  "description": "Premium landscaping company specializing in hedge trimming, mini tree cutting, and full-site cleanup for upscale residences in Metro Atlanta.",
   "url": "https://chazgreenland.com",
   "telephone": "+14045096599",
   "email": "Cartercedrick35@gmail.com",
@@ -723,9 +723,6 @@
   .contact-grid {
     display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px);
   }
-  @media (min-width: 980px) {
-    .contact-grid { grid-template-columns: 1fr 1fr; }
-  }
   .contact-info dl { margin-top: 36px; }
   .contact-info dt {
     font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -743,8 +740,32 @@
   }
   .contact-info dd a:hover { color: var(--gold); }
 
-  form.contact-form { display: grid; gap: 20px; }
-  .field { position: relative; }
+  form.contact-form {
+    display: grid;
+    gap: 20px;
+    position: relative;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    border-radius: 24px;
+    padding: clamp(22px, 3vw, 36px);
+    background:
+      radial-gradient(700px 280px at 18% 9%, rgba(201, 168, 76, 0.22), rgba(201, 168, 76, 0) 58%),
+      radial-gradient(520px 260px at 82% 42%, rgba(244, 239, 230, 0.13), rgba(244, 239, 230, 0) 65%),
+      linear-gradient(170deg, rgba(17, 17, 17, 0.97), rgba(10, 10, 10, 0.94));
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+  }
+  form.contact-form::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(240px 130px at 24% 15%, rgba(201, 168, 76, 0.3), transparent 72%),
+      radial-gradient(280px 140px at 74% 45%, rgba(201, 168, 76, 0.2), transparent 72%);
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  form.contact-form > * { position: relative; z-index: 1; }
+  .field { position: relative; border-radius: 14px; }
   .field label {
     display: block;
     font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -753,10 +774,11 @@
   }
   .field input, .field textarea, .field select {
     width: 100%;
-    background: transparent;
+    background: rgba(244, 239, 230, 0.02);
     border: 0;
     border-bottom: 1px solid var(--line-strong);
-    padding: 14px 0;
+    padding: 14px 12px;
+    border-radius: 12px 12px 8px 8px;
     color: var(--cream);
     font-family: var(--sans);
     font-size: 16px;
@@ -766,7 +788,19 @@
   .field select { appearance: none; }
   .field textarea { resize: none; min-height: 120px; }
   .field input:focus, .field textarea:focus, .field select:focus {
-    outline: none; border-bottom-color: var(--gold);
+    outline: none;
+    border-bottom-color: var(--gold);
+    box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.35), 0 0 20px rgba(201, 168, 76, 0.2);
+    background: rgba(201, 168, 76, 0.08);
+  }
+  .field.field-highlight::before {
+    content: "";
+    position: absolute;
+    inset: -8px -8px -6px -8px;
+    border-radius: 16px;
+    background: radial-gradient(120% 120% at 30% 18%, rgba(201, 168, 76, 0.22), rgba(201, 168, 76, 0) 72%);
+    pointer-events: none;
+    opacity: 0.9;
   }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
@@ -1158,23 +1192,9 @@
     </div>
 
     <div class="contact-grid">
-      <div class="contact-info reveal">
-        <p style="max-width: 420px;">Chaz Greenland is a private grounds studio serving metro Atlanta. We accept a limited number of new properties each season.</p>
-        <dl>
-          <dt>Studio</dt>
-          <dd>Metro Atlanta</dd>
-          <dt>Email</dt>
-          <dd><a href="mailto:Cartercedrick35@gmail.com">Cartercedrick35@gmail.com</a></dd>
-          <dt>Telephone</dt>
-          <dd><a href="tel:+14045096599">+1 (404) 509-6599</a></dd>
-          <dt>Hours</dt>
-          <dd>Mon–Sat &middot; 7:00 — 17:00</dd>
-        </dl>
-      </div>
-
       <form class="contact-form reveal reveal-d2" id="contactForm" action="https://formspree.io/f/xpqbdqqy" method="POST" novalidate>
         <div class="field-row">
-          <div class="field">
+          <div class="field field-highlight">
             <label for="f-name">Name</label>
             <input id="f-name" name="name" type="text" required autocomplete="name" />
           </div>
@@ -1200,7 +1220,7 @@
             </select>
           </div>
         </div>
-        <div class="field">
+        <div class="field field-highlight">
           <label for="f-address">Property Address</label>
           <input id="f-address" name="address" type="text" autocomplete="street-address" />
         </div>
@@ -1211,6 +1231,20 @@
         <button type="submit" class="form-submit"><span class="dot" style="background:#0A0A0A;"></span>Send enquiry</button>
         <div id="formStatus" role="status" aria-live="polite" style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);min-height:18px;"></div>
       </form>
+
+      <div class="contact-info reveal">
+        <p style="max-width: 420px;">Chaz Greenland is a private grounds studio serving metro Atlanta. We accept a limited number of new properties each season.</p>
+        <dl>
+          <dt>Studio</dt>
+          <dd>Metro Atlanta</dd>
+          <dt>Email</dt>
+          <dd><a href="mailto:Cartercedrick35@gmail.com">Cartercedrick35@gmail.com</a></dd>
+          <dt>Telephone</dt>
+          <dd><a href="tel:+14045096599">+1 (404) 509-6599</a></dd>
+          <dt>Hours</dt>
+          <dd>Mon–Sat &middot; 7:00 — 17:00</dd>
+        </dl>
+      </div>
     </div>
   </div>
 </section>
