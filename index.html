@@ -723,9 +723,6 @@
   .contact-grid {
     display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px);
   }
-  @media (min-width: 980px) {
-    .contact-grid { grid-template-columns: 1fr 1fr; }
-  }
   .contact-info dl { margin-top: 36px; }
   .contact-info dt {
     font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -1195,20 +1192,6 @@
     </div>
 
     <div class="contact-grid">
-      <div class="contact-info reveal">
-        <p style="max-width: 420px;">Chaz Greenland is a private grounds studio serving metro Atlanta. We accept a limited number of new properties each season.</p>
-        <dl>
-          <dt>Studio</dt>
-          <dd>Metro Atlanta</dd>
-          <dt>Email</dt>
-          <dd><a href="mailto:Cartercedrick35@gmail.com">Cartercedrick35@gmail.com</a></dd>
-          <dt>Telephone</dt>
-          <dd><a href="tel:+14045096599">+1 (404) 509-6599</a></dd>
-          <dt>Hours</dt>
-          <dd>Mon–Sat &middot; 7:00 — 17:00</dd>
-        </dl>
-      </div>
-
       <form class="contact-form reveal reveal-d2" id="contactForm" action="https://formspree.io/f/xpqbdqqy" method="POST" novalidate>
         <div class="field-row">
           <div class="field field-highlight">
@@ -1248,6 +1231,20 @@
         <button type="submit" class="form-submit"><span class="dot" style="background:#0A0A0A;"></span>Send enquiry</button>
         <div id="formStatus" role="status" aria-live="polite" style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);min-height:18px;"></div>
       </form>
+
+      <div class="contact-info reveal">
+        <p style="max-width: 420px;">Chaz Greenland is a private grounds studio serving metro Atlanta. We accept a limited number of new properties each season.</p>
+        <dl>
+          <dt>Studio</dt>
+          <dd>Metro Atlanta</dd>
+          <dt>Email</dt>
+          <dd><a href="mailto:Cartercedrick35@gmail.com">Cartercedrick35@gmail.com</a></dd>
+          <dt>Telephone</dt>
+          <dd><a href="tel:+14045096599">+1 (404) 509-6599</a></dd>
+          <dt>Hours</dt>
+          <dd>Mon–Sat &middot; 7:00 — 17:00</dd>
+        </dl>
+      </div>
     </div>
   </div>
 </section>
